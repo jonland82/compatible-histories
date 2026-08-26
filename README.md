@@ -57,6 +57,11 @@ $$
 This is the proved mathematical foundation. It does not assume dynamics or
 identify the neighborhood with physical space.
 
+This monotonic thinning is the mathematical seed of the cosmological program.
+If inverse compatible-history measure is identified with relational volume,
+thinning becomes expansion; accelerated expansion depends on the dynamics of
+the thinning rate, not on thinning alone.
+
 ### 2. Hubble Scale from Time-Induced Complexity
 
 [Web edition](accumulated_history/note/accumulated_time_cosmology.html) ·
