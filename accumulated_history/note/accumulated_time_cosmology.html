@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A concise web edition of Hubble Scale from Time-Induced Complexity.">
+  <meta name="author" content="J. R. Landers">
+  <meta name="theme-color" content="#17324d">
+  <title>Hubble Scale from Time-Induced Complexity — Compatible Histories, Paper 2</title>
+  <link rel="stylesheet" href="../../assets/paper.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the paper</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="wordmark" href="../../index.html">Compatible Histories</a>
+      <nav class="nav-links" aria-label="Paper navigation">
+        <a href="#bridge">Bridge</a>
+        <a href="#scale">Hubble scale</a>
+        <a href="#test">DESI test</a>
+        <a href="#next">Next object</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="paper-hero">
+      <p class="eyebrow">Paper 2 of 4 · Cosmological conjecture and falsification</p>
+      <h1>Hubble Scale from Time-Induced Complexity</h1>
+      <p class="lede">If a present state must remain consistent with an ever longer past, then time continuously removes alternative histories. This paper asks whether the rate of that loss can set a cosmic expansion scale—and lets cosmological data reject the simplest version.</p>
+      <p class="byline">J. R. Landers · Concise web edition</p>
+      <div class="button-row">
+        <a class="button" href="accumulated_time_cosmology.pdf">Read the full paper</a>
+        <a class="button secondary" href="accumulated_time_cosmology.tex">LaTeX source</a>
+      </div>
+
+      <nav class="series-strip" aria-label="Four-paper series">
+        <a class="series-step" href="../../foundation/relational_shape.html"><span>Paper 1</span><strong>Distinguishing structure</strong></a>
+        <a class="series-step current" href="accumulated_time_cosmology.html"><span>Paper 2</span><strong>Accumulated history</strong></a>
+        <a class="series-step" href="../noether_history_note/noether_compatible_histories.html"><span>Paper 3</span><strong>Physical admissibility</strong></a>
+        <a class="series-step" href="../invariant_history_note/invariant_classical_histories.html"><span>Paper 4</span><strong>Invariant histories</strong></a>
+      </nav>
+    </section>
+
+    <section class="thesis" aria-labelledby="thesis-title">
+      <p class="kicker" id="thesis-title">The productive clue</p>
+      <blockquote>The age of the Universe naturally produces the present Hubble scale, but the full expansion history shows that compatible-history information cannot accumulate at a fixed rate per doubling of time.</blockquote>
+    </section>
+
+    <section id="bridge" aria-labelledby="bridge-title">
+      <div class="section-head">
+        <p class="kicker">From Paper 1 to cosmology</p>
+        <h2 id="bridge-title">Let the past supply the distinguishing coordinates</h2>
+        <p>Paper 1 proved that added distinctions thin fixed-radius neighborhoods. Here the objects are candidate histories with a shared resolved past, and later times expose distinctions that earlier slices could not.</p>
+      </div>
+      <div class="story-grid">
+        <article class="story-card">
+          <p class="card-label">01 · Survive</p>
+          <h3>Track compatible alternatives</h3>
+          <p>Let $\rho(t)$ be the fraction of candidate histories still compatible at time $t$. The history filtration implies $\rho$ cannot increase as independent constraints accumulate.</p>
+        </article>
+        <article class="story-card">
+          <p class="card-label">02 · Inform</p>
+          <h3>Turn survival into bits</h3>
+          <p>Define $C=-\log_2\rho$. If one history in $2^C$ remains compatible, then $C$ bits distinguish it from the original ensemble.</p>
+        </article>
+        <article class="story-card">
+          <p class="card-label">03 · Hypothesize</p>
+          <h3>Give inverse density a scale</h3>
+          <p>Treat $\rho^{-1}$ as a relational volume, take its cube root as a three-dimensional scale, and ask whether that scale is the cosmological scale factor.</p>
+        </article>
+      </div>
+
+      <div class="formal-grid" style="margin-top:18px">
+        <article class="formal-card wide">
+          <h3>The proposed dictionary</h3>
+          $$
+          \rho\longrightarrow C=-\log_2\rho
+          \longrightarrow V_{\rm rel}\propto2^C
+          \longrightarrow a_{\rm rel}\propto2^{C/3}
+          \longrightarrow H_{\rm rel}=\frac{\ln2}{3}\dot C.
+          $$
+          <p class="math-note"><strong>Logical boundary:</strong> thinning is inherited from Paper 1. Identifying inverse history density with volume—and $a_{\rm rel}$ with the physical FLRW scale factor—is an added cosmological hypothesis.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="scale" aria-labelledby="scale-title">
+      <div class="section-head">
+        <p class="kicker">The simple model</p>
+        <h2 id="scale-title">A constant number of distinctions per doubling of age</h2>
+        <p>The cleanest scale-free assumption makes an immediate prediction. It is striking at the present epoch and too rigid across cosmic history.</p>
+      </div>
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Fixed information rate</h3>
+          $$
+          C(t)-C_*=d_{\rm eff}\log_2(t/t_*).
+          $$
+          $$
+          a(t)\propto t^p,\qquad H(t)=\frac{p}{t},\qquad p=\frac{d_{\rm eff}}{3}.
+          $$
+          <p class="math-note">Three spatial channels give $d_{\rm eff}=3$, $a\propto t$, and $H=1/t$. Counting time as a fourth interchangeable coordinate gives $a\propto t^{4/3}$.</p>
+        </article>
+        <article class="formal-card">
+          <h3>The present scale</h3>
+          $$
+          t_0=13.80\,\mathrm{Gyr}
+          \quad\Longrightarrow\quad
+          H_0^{(3)}=\frac1{t_0}
+          =70.85\,\mathrm{km\,s^{-1}\,Mpc^{-1}}.
+          $$
+          <p class="math-note">This is a few-percent match to current determinations. But $H_0t_0\approx1$ in the observed Universe, and the age is model-inferred, so this is a scale consistency—not an independent measurement.</p>
+        </article>
+      </div>
+      <div class="result-grid" style="margin-top:18px">
+        <article class="result-card good">
+          <p class="kind">Three-channel clue</p>
+          <strong class="metric">$70.85$</strong>
+          <p>$\mathrm{km\,s^{-1}\,Mpc^{-1}}$ from the benchmark cosmic age, with no fitted normalization.</p>
+        </article>
+        <article class="result-card fail">
+          <p class="kind">Literal 3+1 count</p>
+          <strong class="metric">$94.47$</strong>
+          <p>$\mathrm{km\,s^{-1}\,Mpc^{-1}}$—showing that time cannot simply be treated as a fourth Euclidean metadata direction.</p>
+        </article>
+        <article class="result-card open">
+          <p class="kind">Information target</p>
+          <strong class="metric">$0.3136$</strong>
+          <p>bits/Gyr corresponds to the full present Hubble rate under the proposed bridge.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="test" aria-labelledby="test-title">
+      <div class="section-head">
+        <p class="kicker">The decisive test</p>
+        <h2 id="test-title">One correct scale does not make a correct expansion history</h2>
+        <p>DESI DR2 BAO distances test the redshift-dependent shape after profiling out the overall distance scale. The constant-rate models fail clearly.</p>
+      </div>
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Dynamic information rate</h3>
+          $$
+          d_{\rm eff}(t)=\frac{dC}{d\log_2t}=3H(t)t.
+          $$
+          <p class="math-note">Expansion data can be read as a target curve for history information. The fixed models assume this curve is constant.</p>
+        </article>
+        <article class="formal-card">
+          <h3>Power-law observable</h3>
+          $$
+          H(z)=H_0(1+z)^{1/p},
+          \qquad D_H=\frac cH,
+          \qquad D_M=c\int_0^z\frac{dz'}{H(z')}.
+          $$
+          <p class="math-note">These equations give the full BAO distance–redshift shape for a constant $p$.</p>
+        </article>
+      </div>
+      <div class="table-panel">
+        <table>
+          <caption>Fits to the 13-element DESI DR2 BAO vector. One nuisance scale is profiled for every model.</caption>
+          <thead><tr><th>History law</th><th>$\chi^2$</th><th>Degrees of freedom</th></tr></thead>
+          <tbody>
+            <tr><td>Three spatial channels, $p=1$</td><td>187.09</td><td>12</td></tr>
+            <tr><td>Literal 3D plus time, $p=4/3$</td><td>1364.93</td><td>12</td></tr>
+            <tr><td>Best constant power, $p=0.9125$</td><td>96.97</td><td>11</td></tr>
+            <tr><td>Flat $\Lambda$CDM, $\Omega_m=0.3027$</td><td>10.63</td><td>12</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="boundary">
+        <h3>What the failure teaches</h3>
+        <p>No constant number of effective bits per logarithmic time captures all epochs. Even fitting the power law below $z=1$ yields $\chi^2=670.72$ on six held-out predictions at $z\ge1$. The idea must become dynamical—or replace total accumulation with conditional new information.</p>
+      </div>
+    </section>
+
+    <section id="next" aria-labelledby="next-title">
+      <div class="section-head">
+        <p class="kicker">The relativistic correction</p>
+        <h2 id="next-title">Count what is new, not the common past again</h2>
+        <p>Total causal-past four-volume is covariant in spirit but repeats shared history at every step. Tests show that it is not the missing information variable.</p>
+      </div>
+      <div class="result-grid">
+        <article class="result-card fail">
+          <p class="kind">Raw causal volume</p>
+          <strong class="metric">$321.8\times$</strong>
+          <p>Variation in the coupling required to reproduce expansion from $z=2.33$ to today.</p>
+        </article>
+        <article class="result-card open">
+          <p class="kind">Log causal volume</p>
+          <strong class="metric">$1.514\times$</strong>
+          <p>The drift is much smaller, supporting information-like normalization, but it is still not constant.</p>
+        </article>
+        <article class="result-card good">
+          <p class="kind">Required refinement</p>
+          <strong class="metric">Conditional</strong>
+          <p>Measure only the independent information contributed between neighboring causal slices after removing their shared past.</p>
+        </article>
+      </div>
+      <div class="boundary">
+        <h3>Scientific status</h3>
+        <p>The present-day scale connection is a clue. The fixed cosmology is ruled out. No independent covariant $C(t)$ has yet been constructed, and the relation $H=(\ln2/3)\dot C$ remains hypothesized.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="handoff-title">
+      <div class="handoff">
+        <p class="kicker">The handoff to Paper 3</p>
+        <h2 id="handoff-title">Who decides which histories are compatible?</h2>
+        <p>A geometric tolerance can manufacture almost any survival rate. Paper 3 replaces adjustable proximity with dynamical admissibility and asks which measure survives changes of coordinates and resolution.</p>
+        <div class="equation">
+          $$
+          \text{conditional novelty}
+          +\text{physical constraints}
+          +\text{invariant measure}.
+          $$
+        </div>
+        <div class="button-row">
+          <a class="button" href="../noether_history_note/noether_compatible_histories.html">Continue to Paper 3</a>
+          <a class="button secondary" href="../../index.html#papers">Return to the series</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Compatible Histories · Paper 2 of 4 · J. R. Landers</p>
+    <p>Concise web edition · <a href="accumulated_time_cosmology.pdf">Full paper</a> · Mathematics rendered by MathJax</p>
+  </footer>
+</body>
+</html>

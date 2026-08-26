@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A concise web edition of Noether Constraints and the Measure of Compatible Histories.">
+  <meta name="author" content="J. R. Landers">
+  <meta name="theme-color" content="#17324d">
+  <title>Noether Constraints and Compatible Histories — Paper 3</title>
+  <link rel="stylesheet" href="../../assets/paper.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the paper</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="wordmark" href="../../index.html">Compatible Histories</a>
+      <nav class="nav-links" aria-label="Paper navigation">
+        <a href="#conditioning">Conditioning</a>
+        <a href="#failure">Failed proxy</a>
+        <a href="#noether">Noether</a>
+        <a href="#measure">Measure</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="paper-hero">
+      <p class="eyebrow">Paper 3 of 4 · Physical admissibility and invariant measure</p>
+      <h1>Noether Constraints and the Measure of Compatible Histories</h1>
+      <p class="lede">A survival rate is only physical if “compatible” is defined independently of the answer and alternatives are weighted independently of coordinates. Controlled tests remove predictable dynamics, reject geometric tolerance, and select Noether admissibility with Liouville measure.</p>
+      <p class="byline">J. R. Landers · Concise web edition</p>
+      <div class="button-row">
+        <a class="button" href="noether_compatible_histories.pdf">Read the full paper</a>
+        <a class="button secondary" href="noether_compatible_histories.tex">LaTeX source</a>
+      </div>
+
+      <nav class="series-strip" aria-label="Four-paper series">
+        <a class="series-step" href="../../foundation/relational_shape.html"><span>Paper 1</span><strong>Distinguishing structure</strong></a>
+        <a class="series-step" href="../note/accumulated_time_cosmology.html"><span>Paper 2</span><strong>Accumulated history</strong></a>
+        <a class="series-step current" href="noether_compatible_histories.html"><span>Paper 3</span><strong>Physical admissibility</strong></a>
+        <a class="series-step" href="../invariant_history_note/invariant_classical_histories.html"><span>Paper 4</span><strong>Invariant histories</strong></a>
+      </nav>
+    </section>
+
+    <section class="thesis" aria-labelledby="thesis-title">
+      <p class="kicker" id="thesis-title">The correction in one sentence</p>
+      <blockquote>Symmetry determines which roads are physically admissible; invariant phase volume determines how much room those roads occupy.</blockquote>
+    </section>
+
+    <section id="conditioning" aria-labelledby="conditioning-title">
+      <div class="section-head">
+        <p class="kicker">First requirement</p>
+        <h2 id="conditioning-title">Measure novelty relative to the shared past and known dynamics</h2>
+        <p>Raw trajectory separation is not information. Expansion and deterministic chaos can amplify known differences while adding no unresolved distinction.</p>
+      </div>
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Remove the prediction</h3>
+          $$
+          \epsilon_i(s+1)=x_i(s+1)-F_s[x_i(s)].
+          $$
+          <p class="math-note">$F_s$ is fixed before comparison. The innovation $\epsilon$ is what the resolved past and dynamics did not already predict.</p>
+        </article>
+        <article class="formal-card">
+          <h3>Conditioned survival</h3>
+          $$
+          \delta_N(i,j)=\sum_{s<N}d(\epsilon_i(s+1),\epsilon_j(s+1)),
+          $$
+          $$
+          C_N(r)=-\log_2\Pr[\delta_N\le r\mid\text{shared past}].
+          $$
+          <p class="math-note">Nonnegative increments preserve the nested-history structure inherited from Paper 1.</p>
+        </article>
+      </div>
+      <div class="table-panel">
+        <table>
+          <caption>Controlled tests separate predictable separation from conditional novelty.</caption>
+          <thead><tr><th>System</th><th>Raw or coarse result</th><th>Correctly conditioned</th></tr></thead>
+          <tbody>
+            <tr><td>Predictable uniform expansion</td><td>1.9546 bits</td><td>0 bits</td></tr>
+            <tr><td>Deterministic standard map</td><td>0.5581 bits</td><td>0 bits</td></tr>
+            <tr><td>One injected random bit/update</td><td>—</td><td>1.0022 bits/update</td></tr>
+            <tr><td>Fixed hidden bit tape</td><td>0.9971 bits/update</td><td>0 with full microstate</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="boundary">
+        <h3>The observer’s resolved state matters</h3>
+        <p>A hidden deterministic tape is new information to a coarse observer and no information to an observer given the microstate. Conditional novelty is not identical to microscopic randomness.</p>
+      </div>
+    </section>
+
+    <section id="failure" aria-labelledby="failure-title">
+      <div class="section-head">
+        <p class="kicker">Controlled failure</p>
+        <h2 id="failure-title">A geometric radius can choose the answer</h2>
+        <p>The conditioned estimator counts the intended thing, but its fixed tolerance is not a physical scale. A small predictor error or a favorable radius can manufacture the entire target rate.</p>
+      </div>
+      <div class="result-grid">
+        <article class="result-card fail">
+          <p class="kind">0.5% predictor error</p>
+          <strong class="metric">$0.0880$</strong>
+          <p>false bits/Gyr at the central radius.</p>
+        </article>
+        <article class="result-card fail">
+          <p class="kind">1% predictor error</p>
+          <strong class="metric">$0.3117$</strong>
+          <p>false bits/Gyr—already larger than the approximate late-time target.</p>
+        </article>
+        <article class="result-card open">
+          <p class="kind">151-radius scan</p>
+          <strong class="metric">No plateau</strong>
+          <p>No expansion history maintained a nontrivial rate within 10% across one decade of radius.</p>
+        </article>
+      </div>
+      <div class="boundary">
+        <h3>Identifiability fails, not numerics</h3>
+        <p>Resolution normalization collapsed exactly and time slicing changed cumulative distance by only $1.49\times10^{-14}$. The radius dependence is intrinsic to continuous-distance survival. Compatibility needs a physically specified admissible set.</p>
+      </div>
+    </section>
+
+    <section id="noether" aria-labelledby="noether-title">
+      <div class="section-head">
+        <p class="kicker">Physical admissibility</p>
+        <h2 id="noether-title">Conservation replaces adjustable proximity</h2>
+        <p>Noether’s connection between time-translation symmetry and energy conservation selects allowed transitions before anything is counted.</p>
+      </div>
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Energy-shell cells</h3>
+          $$
+          \mathcal C_{\epsilon}(E_0)
+          =\{\text{phase cells whose }H\text{-range contains }E_0\}.
+          $$
+          <p class="math-note">The effective energy uncertainty comes from exact cell intersection, not a tolerance tuned to a desired bit rate.</p>
+        </article>
+        <article class="formal-card">
+          <h3>Constraint codimension</h3>
+          $$
+          C_\epsilon
+          =\log_2\frac1\epsilon-\log_2\frac{A_{\rm grid}}V+o(1).
+          $$
+          <p class="math-note">For one smooth constraint, each halving of cell width adds one raw bit. That divergence is the geometric signature of codimension one.</p>
+        </article>
+        <article class="formal-card wide">
+          <h3>From states to stationary-action histories</h3>
+          $$
+          R_m=x_{m+1}+(-2+\Delta t^2)x_m+x_{m-1}=0.
+          $$
+          <p class="math-note">Interval arithmetic admits a candidate continuation only when its cells can contain a discrete Euler–Lagrange solution. Spatial refinement exposes codimension; temporal refinement exposes the density of imposed slices. Neither is yet an invariant history measure.</p>
+        </article>
+      </div>
+      <div class="result-grid" style="margin-top:18px">
+        <article class="result-card good">
+          <p class="kind">Harmonic shell</p>
+          <strong class="metric">$\approx1$ bit</strong>
+          <p>added per spatial halving at fine resolution, as codimension predicts.</p>
+        </article>
+        <article class="result-card good">
+          <p class="kind">No tuned radius</p>
+          <strong class="metric">Exact intersection</strong>
+          <p>defines state and path admissibility from conservation and stationary action.</p>
+        </article>
+        <article class="result-card open">
+          <p class="kind">Remaining issue</p>
+          <strong class="metric">Continuum measure</strong>
+          <p>Raw cell and slice counts retain their chosen regularization.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="measure" aria-labelledby="measure-title">
+      <div class="section-head">
+        <p class="kicker">The invariance test</p>
+        <h2 id="measure-title">Convergence is not enough; the answer must survive canonical coordinates</h2>
+        <p>The codimension-subtracted cell count converges but changes under equal-area grid deformations and a canonical shear. Liouville phase volume does not.</p>
+      </div>
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Canonical phase measure</h3>
+          $$
+          d\Gamma=dx\,dp,
+          \qquad dx\wedge dp=dQ\wedge dP.
+          $$
+          <p class="math-note">Hamiltonian flow and canonical transformations preserve Liouville measure.</p>
+        </article>
+        <article class="formal-card">
+          <h3>Energy-band density</h3>
+          $$
+          g_{\tau_E}(E)=\frac1{2\tau_E}
+          \int\mathbf1\{|H-E|\le\tau_E\}\,d\Gamma.
+          $$
+          <p class="math-note">Unlike cell incidence, the integral weights each region by phase volume. As $\tau_E\to0$, it approaches the microcanonical density of states.</p>
+        </article>
+      </div>
+      <div class="result-grid" style="margin-top:18px">
+        <article class="result-card fail">
+          <p class="kind">Cell finite part</p>
+          <strong class="metric">$0.3134$ bits</strong>
+          <p>persistent spread across equal-area grids and a canonical shear.</p>
+        </article>
+        <article class="result-card good">
+          <p class="kind">Harmonic Liouville density</p>
+          <strong class="metric">$0.111\%$</strong>
+          <p>cross-scheme spread around the exact $2\pi$ result.</p>
+        </article>
+        <article class="result-card good">
+          <p class="kind">Anharmonic density</p>
+          <strong class="metric">$0.257\%$</strong>
+          <p>cross-scheme spread against high-accuracy quadrature.</p>
+        </article>
+      </div>
+
+      <div class="formal-grid" style="margin-top:18px">
+        <article class="formal-card wide">
+          <h3>The revised conditional quantity</h3>
+          $$
+          \Delta C_\mu(n)=-\log_2
+          \frac{\mu(\mathcal A_n\mid\mathcal A_{<n})}
+               {\mu(\mathcal P_n\mid\mathcal A_{<n})},
+          \qquad C_\mu(N)=\sum_{n=1}^{N}\Delta C_\mu(n).
+          $$
+          <p class="math-note">Noether constraints define the admissible subset $\mathcal A_n$; invariant measure $\mu$ says how much candidate possibility survives. For fields and gravity, $\mu$ must also respect constraints and gauge redundancy.</p>
+        </article>
+      </div>
+      <div class="boundary">
+        <h3>Scientific status</h3>
+        <p>The measurement hierarchy is validated in finite classical tests. It does not yet provide a covariant measure on complete histories, a continuum time normalization, or the constrained symplectic measure for gravity. The Hubble-scale bit rate is now a target, not a calibration.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="handoff-title">
+      <div class="handoff">
+        <p class="kicker">The handoff to Paper 4</p>
+        <h2 id="handoff-title">How do we measure an entire trajectory without counting every slice?</h2>
+        <p>Liouville measure solves the state-space problem. Paper 4 observes that deterministic initial data already determine a complete history, then tests whether the induced history measure survives canonical transformations, clock changes, and gauge fixing.</p>
+        <div class="equation">
+          $$
+          \text{reduced phase measure}
+          \xrightarrow{\;\text{dynamics}\;}
+          \text{measure on complete histories}.
+          $$
+        </div>
+        <div class="button-row">
+          <a class="button" href="../invariant_history_note/invariant_classical_histories.html">Continue to Paper 4</a>
+          <a class="button secondary" href="../../index.html#papers">Return to the series</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Compatible Histories · Paper 3 of 4 · J. R. Landers</p>
+    <p>Concise web edition · <a href="noether_compatible_histories.pdf">Full paper</a> · Mathematics rendered by MathJax</p>
+  </footer>
+</body>
+</html>

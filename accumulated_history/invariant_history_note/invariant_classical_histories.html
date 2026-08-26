@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A concise web edition of Invariant Measures on Compatible Classical Histories.">
+  <meta name="author" content="J. R. Landers">
+  <meta name="theme-color" content="#17324d">
+  <title>Invariant Measures on Compatible Classical Histories — Paper 4</title>
+  <link rel="stylesheet" href="../../assets/paper.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the paper</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="wordmark" href="../../index.html">Compatible Histories</a>
+      <nav class="nav-links" aria-label="Paper navigation">
+        <a href="#construction">Construction</a>
+        <a href="#compatibility">Information</a>
+        <a href="#invariance">Invariance</a>
+        <a href="#cosmology">Cosmology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="paper-hero">
+      <p class="eyebrow">Paper 4 of 4 · Invariant complete-history measure</p>
+      <h1>Invariant Measures on Compatible Classical Histories</h1>
+      <p class="lede">A deterministic trajectory is not a product of independent snapshots. It is one physical initial condition carried through dynamics. That observation turns invariant phase-space measure into a measure on entire histories—and makes canonical, temporal, and gauge invariance testable.</p>
+      <p class="byline">J. R. Landers · Concise web edition</p>
+      <div class="button-row">
+        <a class="button" href="invariant_classical_histories.pdf">Read the full paper</a>
+        <a class="button secondary" href="invariant_classical_histories.tex">LaTeX source</a>
+      </div>
+
+      <nav class="series-strip" aria-label="Four-paper series">
+        <a class="series-step" href="../../foundation/relational_shape.html"><span>Paper 1</span><strong>Distinguishing structure</strong></a>
+        <a class="series-step" href="../note/accumulated_time_cosmology.html"><span>Paper 2</span><strong>Accumulated history</strong></a>
+        <a class="series-step" href="../noether_history_note/noether_compatible_histories.html"><span>Paper 3</span><strong>Physical admissibility</strong></a>
+        <a class="series-step current" href="invariant_classical_histories.html"><span>Paper 4</span><strong>Invariant histories</strong></a>
+      </nav>
+    </section>
+
+    <section class="thesis" aria-labelledby="thesis-title">
+      <p class="kicker" id="thesis-title">The construction in one sentence</p>
+      <blockquote>Reduce to physical initial data, push their invariant measure through deterministic dynamics, and ask what fraction of complete histories remains compatible with the record.</blockquote>
+    </section>
+
+    <section id="construction" aria-labelledby="construction-title">
+      <div class="section-head">
+        <p class="kicker">The conceptual move</p>
+        <h2 id="construction-title">Solution space is another representation of physical initial-data space</h2>
+        <p>Paper 3 found invariant measure on states but left a temporal divergence in raw path counts. Determinism removes the apparent infinity of independent slice choices.</p>
+      </div>
+      <div class="story-grid">
+        <article class="story-card">
+          <p class="card-label">01 · Reduce</p>
+          <h3>Keep physical degrees of freedom</h3>
+          <p>Start on reduced phase space $\Gamma_{\rm phys}$ after constraints and gauge redundancy have been removed. Normalize a physical ensemble $\nu_0$ there.</p>
+        </article>
+        <article class="story-card">
+          <p class="card-label">02 · Evolve</p>
+          <h3>Map data to solutions</h3>
+          <p>Under suitable existence and uniqueness conditions, every initial datum $z$ determines one complete classical history $\gamma_z$.</p>
+        </article>
+        <article class="story-card">
+          <p class="card-label">03 · Push forward</p>
+          <h3>Measure each history once</h3>
+          <p>A set of histories receives exactly the measure of the initial conditions that generate it. No product over temporal coordinate cells is needed.</p>
+        </article>
+      </div>
+      <div class="formal-grid" style="margin-top:18px">
+        <article class="formal-card">
+          <h3>Physical prior</h3>
+          $$
+          d\nu_0(z)=f_0(z)\,d\mu_L(z),
+          \qquad \int_{\Gamma_{\rm phys}}d\nu_0=1.
+          $$
+          <p class="math-note">Liouville measure supplies invariant volume. The ensemble density $f_0$ remains physical input; invariance does not choose nature’s prior.</p>
+        </article>
+        <article class="formal-card">
+          <h3>History pushforward</h3>
+          $$
+          F:\Gamma_{\rm phys}\to\mathcal H,
+          \quad z\mapsto\gamma_z,
+          \qquad \boxed{\mu_{\mathcal H}=F_*\nu_0}.
+          $$
+          <p class="math-note">For a history event $B$, $\mu_{\mathcal H}(B)=\nu_0(F^{-1}(B))$. Canonical invariance is inherited from the physical measure.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="compatibility" aria-labelledby="compatibility-title">
+      <div class="section-head">
+        <p class="kicker">From measure to information</p>
+        <h2 id="compatibility-title">Let the physical record weight complete histories</h2>
+        <p>A hard record can select a subset; a finite-resolution record can grade histories continuously. The distinction separates surviving volume from posterior information.</p>
+      </div>
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Surviving measure</h3>
+          $$
+          0\le W_t(\gamma)\le1,
+          \qquad Z_t=\int_{\mathcal H}W_t(\gamma)\,d\mu_{\mathcal H}(\gamma),
+          $$
+          $$
+          C_{\rm surv}(t)=-\log_2Z_t.
+          $$
+          <p class="math-note">If later records never increase a history’s compatibility, $C_{\rm surv}$ is nondecreasing—the measure-theoretic version of Paper 1’s nested neighborhoods.</p>
+        </article>
+        <article class="formal-card">
+          <h3>Posterior information</h3>
+          $$
+          d\mu_t=\frac{W_t}{Z_t}\,d\mu_{\mathcal H},
+          \qquad 0\le C_{\rm KL}(t)\le C_{\rm surv}(t).
+          $$
+          <p class="math-note">For hard compatibility the two coincide. For soft weights they differ: remaining prior volume is not the same object as information gained by an observer.</p>
+        </article>
+      </div>
+      <div class="result-grid" style="margin-top:18px">
+        <article class="result-card good">
+          <p class="kind">At $T=4$</p>
+          <strong class="metric">$4.5462$ bits</strong>
+          <p>of surviving-volume information in the harmonic test.</p>
+        </article>
+        <article class="result-card open">
+          <p class="kind">Same record</p>
+          <strong class="metric">$3.1694$ bits</strong>
+          <p>of posterior KL information—distinct because compatibility is soft.</p>
+        </article>
+        <article class="result-card open">
+          <p class="kind">Required inputs</p>
+          <strong class="metric">Prior · record · resolution</strong>
+          <p>must be specified physically before either quantity is calculated.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="invariance" aria-labelledby="invariance-title">
+      <div class="section-head">
+        <p class="kicker">Three invariance gates</p>
+        <h2 id="invariance-title">The same physical history must not acquire false bits from its description</h2>
+        <p>The construction is tested against changes of clock, nonlinear canonical coordinates, and nonlinear gauge surfaces. Each test includes a controlled failure showing the necessary Jacobian.</p>
+      </div>
+
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Clock reparameterization</h3>
+          <p>For $t=f(\tau)$, include the lapse $N(\tau)=dt/d\tau$:</p>
+          $$
+          W_T=\exp\!\left[-\frac1{2\sigma^2}\int d\tau\,N(\tau)
+          (x_\gamma(f(\tau))-y(f(\tau)))^2\right].
+          $$
+          <p class="math-note">The lapse makes the exponent an integral over physical time rather than a count of coordinate slices.</p>
+        </article>
+        <article class="formal-card">
+          <h3>Gauge-fixed physical measure</h3>
+          $$
+          d\mu_{\rm phys}^{(\chi)}
+          =\delta(\mathcal C)\,\delta(\chi)
+          |\{\chi,\mathcal C\}|\,dx\,dp\,dt\,dp_t.
+          $$
+          <p class="math-note">The Faddeev–Popov determinant compensates for how a gauge surface intersects physical orbits. Without it, gauge choice becomes false history information.</p>
+        </article>
+      </div>
+
+      <div class="result-grid" style="margin-top:18px">
+        <article class="result-card good">
+          <p class="kind">Linear · quadratic · exponential clocks</p>
+          <strong class="metric">$5.3\times10^{-6}$ bits</strong>
+          <p>cross-clock spread with the lapse included.</p>
+        </article>
+        <article class="result-card good">
+          <p class="kind">Nonlinear canonical shear</p>
+          <strong class="metric">$1.8\times10^{-5}$ bits</strong>
+          <p>finest-step discrepancy between independently integrated coordinate descriptions.</p>
+        </article>
+        <article class="result-card good">
+          <p class="kind">Nonlinear gauges</p>
+          <strong class="metric">$3.6\times10^{-5}$ bits</strong>
+          <p>maximum gauge-fixed survival-information discrepancy.</p>
+        </article>
+      </div>
+
+      <div class="table-panel">
+        <table>
+          <caption>Controlled failures show the artifacts removed by the invariant factors.</caption>
+          <thead><tr><th>Omitted structure</th><th>False spread or shift</th><th>Interpretation</th></tr></thead>
+          <tbody>
+            <tr><td>Lapse $dt/d\tau$</td><td>0.081382 bits</td><td>Unequal physical intervals receive equal coordinate weight.</td></tr>
+            <tr><td>Gauge determinant</td><td>up to 0.254404 bits</td><td>Gauge-orbit intersection density is mistaken for physical alternatives.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="boundary">
+        <h3>What these tests cover</h3>
+        <p>The result establishes a finite deterministic classical construction in deparameterizable, single-constraint systems. It does not yet cover multiple gravitational constraints, spacetime diffeomorphisms, Gribov ambiguities, or quantum interference.</p>
+      </div>
+    </section>
+
+    <section id="cosmology" aria-labelledby="cosmology-title">
+      <div class="section-head">
+        <p class="kicker">The completed classical object</p>
+        <h2 id="cosmology-title">The series now has a compact invariant candidate</h2>
+        <p>Each earlier correction appears in one measurement hierarchy.</p>
+      </div>
+      <div class="formal-grid">
+        <article class="formal-card wide">
+          <h3>Invariant compatible-history information</h3>
+          $$
+          \boxed{
+          C_{\rm surv}(t)
+          =-\log_2\!\int_{\Gamma_{\rm phys}}
+          W_t(\gamma_z)\,d\nu_0(z)}.
+          $$
+          <p class="math-note">Reduce physical initial data; push their measure through dynamics; weight complete histories with a gauge-invariant, physically timed compatibility functional.</p>
+        </article>
+        <article class="formal-card wide">
+          <h3>The cosmological hypothesis remains</h3>
+          $$
+          H_{\rm rel}(\tau)
+          =\frac{\ln2}{3}\frac{dC_{\rm surv}}{d\tau}.
+          $$
+          <p class="math-note">This paper strengthens the definition of $C_{\rm surv}$. It does not derive this constitutive relation from gravity or show that the information rate equals the observed Hubble rate.</p>
+        </article>
+      </div>
+      <div class="boundary">
+        <h3>Three structures still needed for cosmology</h3>
+        <ul class="compact-list">
+          <li>A reduced or gauge-fixed measure for the Hamiltonian and momentum constraints of general relativity.</li>
+          <li>A causal, relational record defined without coordinate time or coordinate position.</li>
+          <li>A prior on gravitational initial data specified independently of the expansion history it will be asked to predict.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="handoff-title">
+      <div class="handoff">
+        <p class="kicker">The next scientific gate</p>
+        <h2 id="handoff-title">Take the invariant object into a finite gravitational system</h2>
+        <p>A minisuperspace model or constrained cosmological perturbation system should first pass canonical, clock, gauge, and refinement tests. Only then should its independently defined history-information rate be compared with held-out expansion data.</p>
+        <div class="equation">
+          $$
+          \text{gravitational solution space}
+          \longrightarrow C_{\rm surv}(\tau)
+          \stackrel{?}{\longrightarrow}H(\tau).
+          $$
+        </div>
+        <div class="button-row">
+          <a class="button" href="../../index.html#papers">Return to the four-paper series</a>
+          <a class="button secondary" href="../../PROGRAM.md">Read the research program</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Compatible Histories · Paper 4 of 4 · J. R. Landers</p>
+    <p>Concise web edition · <a href="invariant_classical_histories.pdf">Full paper</a> · Mathematics rendered by MathJax</p>
+  </footer>
+</body>
+</html>

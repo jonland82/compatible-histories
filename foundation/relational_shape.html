@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A concise web edition of The Relational Shape of Structural Complexity and Neighborhood Density.">
+  <meta name="author" content="J. R. Landers">
+  <meta name="theme-color" content="#17324d">
+  <title>The Relational Shape — Compatible Histories, Paper 1</title>
+  <link rel="stylesheet" href="../assets/paper.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the paper</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="wordmark" href="../index.html">Compatible Histories</a>
+      <nav class="nav-links" aria-label="Paper navigation">
+        <a href="#argument">Argument</a>
+        <a href="#formalism">Formalism</a>
+        <a href="#information">Information</a>
+        <a href="#boundary">Boundary</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="paper-hero">
+      <p class="eyebrow">Paper 1 of 4 · Mathematical foundation</p>
+      <h1>The Relational Shape of Structural Complexity and Neighborhood Density</h1>
+      <p class="lede">More detail does not merely make an object longer to describe. When the new detail distinguishes it from its peers, the object moves outward in relational space and its nearby alternatives can only disappear.</p>
+      <p class="byline">J. R. Landers · Concise web edition</p>
+      <div class="button-row">
+        <a class="button" href="relational_shape.pdf">Read the full paper</a>
+        <a class="button secondary" href="relational_shape.tex">LaTeX source</a>
+      </div>
+
+      <nav class="series-strip" aria-label="Four-paper series">
+        <a class="series-step current" href="relational_shape.html"><span>Paper 1</span><strong>Distinguishing structure</strong></a>
+        <a class="series-step" href="../accumulated_history/note/accumulated_time_cosmology.html"><span>Paper 2</span><strong>Accumulated history</strong></a>
+        <a class="series-step" href="../accumulated_history/noether_history_note/noether_compatible_histories.html"><span>Paper 3</span><strong>Physical admissibility</strong></a>
+        <a class="series-step" href="../accumulated_history/invariant_history_note/invariant_classical_histories.html"><span>Paper 4</span><strong>Invariant histories</strong></a>
+      </nav>
+    </section>
+
+    <section class="thesis" aria-labelledby="thesis-title">
+      <p class="kicker" id="thesis-title">The result in one sentence</p>
+      <blockquote>Under an additive distance with nonnegative coordinate contributions, adding distinguishing structure can never create a new fixed-radius neighbor.</blockquote>
+    </section>
+
+    <section id="argument" aria-labelledby="argument-title">
+      <div class="section-head">
+        <p class="kicker">The argument</p>
+        <h2 id="argument-title">Description becomes geometry in one line</h2>
+        <p>The paper starts with a finite population of objects. Each added coordinate is allowed to separate a pair or leave it unchanged, but never to contribute negative distance.</p>
+      </div>
+      <div class="story-grid">
+        <article class="story-card">
+          <p class="card-label">01 · Describe</p>
+          <h3>Objects acquire coordinates</h3>
+          <p>At complexity $N$, object $O_i$ is represented by $O_i^{(N)}=(o_{i1},\ldots,o_{iN})$. The coordinates may be categorical, numerical, or any features with a nonnegative dissimilarity.</p>
+        </article>
+        <article class="story-card">
+          <p class="card-label">02 · Separate</p>
+          <h3>Differences accumulate</h3>
+          <p>The next coordinate adds $d_{N+1}\ge0$ to every pairwise distance. A shared or redundant coordinate adds nothing; a genuinely distinguishing one pushes at least some pairs apart.</p>
+        </article>
+        <article class="story-card">
+          <p class="card-label">03 · Thin</p>
+          <h3>Nearby alternatives disappear</h3>
+          <p>Because no distance decreases, an object already outside a fixed-radius neighborhood cannot re-enter merely because more structure was appended.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="formalism" aria-labelledby="formalism-title">
+      <div class="section-head">
+        <p class="kicker">Key formalism</p>
+        <h2 id="formalism-title">The theorem and its filtration</h2>
+        <p>The result is deterministic. It requires neither randomness nor a physical interpretation.</p>
+      </div>
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Additive separation</h3>
+          $$
+          \delta_N(O_i,O_j)=\sum_{n=1}^{N}d_n(o_{in},o_{jn}),
+          \qquad d_n(x,y)\ge0.
+          $$
+          $$
+          \delta_{N+1}=\delta_N+d_{N+1}\ge\delta_N.
+          $$
+          <p class="math-note">The assumption is cumulative, unnormalized distance. If the distance itself is renormalized when $N$ changes, the conclusion need not follow.</p>
+        </article>
+        <article class="formal-card">
+          <h3>Neighborhood density</h3>
+          $$
+          \rho_N(i;r)=\frac{1}{K-1}\sum_{j\ne i}
+          \mathbf1\!\left\{\delta_N(O_i,O_j)\le r\right\}.
+          $$
+          $$
+          \rho_{N+1}(i;r)\le\rho_N(i;r).
+          $$
+          <p class="math-note">Each indicator can switch from one to zero, or remain fixed. None can switch from zero back to one.</p>
+        </article>
+        <article class="formal-card wide">
+          <h3>Nested relational neighborhoods</h3>
+          $$
+          \mathcal N_r^{(1)}(O_i)\supseteq
+          \mathcal N_r^{(2)}(O_i)\supseteq\cdots\supseteq
+          \mathcal N_r^{(N)}(O_i)\supseteq\cdots
+          $$
+          <p class="math-note">This descending filtration is the mathematical object carried into the next three papers. Later papers replace abstract objects by histories and cardinality by invariant physical measure.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="information" aria-labelledby="information-title">
+      <div class="section-head">
+        <p class="kicker">What a coordinate contributes</p>
+        <h2 id="information-title">Coordinate count is not the same as distinguishing information</h2>
+        <p>A useful coordinate is one that changes relations within the population. The paper makes that statement quantitative.</p>
+      </div>
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Isolation velocity</h3>
+          $$
+          v_i(N)=D_{N+1}(i)-D_N(i)
+          =\frac{1}{K-1}\sum_{j\ne i}d_{N+1}(o_{i,N+1},o_{j,N+1})\ge0.
+          $$
+          <p class="math-note">A population-wide constant coordinate has $v_i=0$. A strongly differentiating coordinate produces a larger outward step.</p>
+        </article>
+        <article class="formal-card">
+          <h3>Categorical information</h3>
+          <p>For Hamming distance on a categorical coordinate with probabilities $p_n(x)$:</p>
+          $$
+          \Pr(o_{in}\ne o_{jn})=1-\sum_x p_n(x)^2.
+          $$
+          <p class="math-note">The collision term is related to Rényi entropy, $H_2=-\log\sum_xp_n(x)^2$. Diversity, not metadata length alone, controls expected separation.</p>
+        </article>
+      </div>
+      <div class="result-grid" style="margin-top:18px">
+        <article class="result-card good">
+          <p class="kind">Exact</p>
+          <strong class="metric">Nested</strong>
+          <p>Every fixed-radius neighborhood is a subset of the one before it.</p>
+        </article>
+        <article class="result-card good">
+          <p class="kind">Uniform q-ary model</p>
+          <strong class="metric">$\Theta(N^R q^{-N})$</strong>
+          <p>At fixed radius $R$, expected local density decays exponentially up to a polynomial factor.</p>
+        </article>
+        <article class="result-card open">
+          <p class="kind">Interpretation</p>
+          <strong class="metric">Relational</strong>
+          <p>An identity is expressed partly through the alternatives that cease to remain nearby.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="boundary" aria-labelledby="boundary-title">
+      <div class="section-head">
+        <p class="kicker">Scope of the result</p>
+        <h2 id="boundary-title">What is proved—and what has not entered yet</h2>
+        <p>This paper is intentionally prior to dynamics and cosmology.</p>
+      </div>
+      <div class="boundary">
+        <h3>The theorem does not identify a physical distance</h3>
+        <ul class="compact-list">
+          <li>Appending metadata is not enough; the coordinate must contribute nonnegative pairwise dissimilarity.</li>
+          <li>Redundant structure may increase description length without changing any neighborhood.</li>
+          <li>No law of motion or cosmological scale factor follows from neighborhood thinning alone.</li>
+          <li>The next paper adds the conjectural step: let accumulated history supply the distinguishing coordinates.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="handoff-title">
+      <div class="handoff">
+        <p class="kicker">The handoff to Paper 2</p>
+        <h2 id="handoff-title">What if the added structure is the past?</h2>
+        <p>A longer history can distinguish present states that once appeared equivalent. Paper 2 asks whether the resulting loss of compatible alternatives can be read as an expanding relational volume.</p>
+        <div class="equation">
+          $$
+          \text{more history}\longrightarrow
+          \text{fewer compatible alternatives}\longrightarrow
+          \text{a possible geometric scale?}
+          $$
+        </div>
+        <div class="button-row">
+          <a class="button" href="../accumulated_history/note/accumulated_time_cosmology.html">Continue to Paper 2</a>
+          <a class="button secondary" href="../index.html#papers">Return to the series</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Compatible Histories · Paper 1 of 4 · J. R. Landers</p>
+    <p>Concise web edition · <a href="relational_shape.pdf">Full paper</a> · Mathematics rendered by MathJax</p>
+  </footer>
+</body>
+</html>
