@@ -92,8 +92,8 @@ weights them independently of canonical coordinates:
 $$
 \Delta C_\mu(n)
 =-\log_2
-\frac{\mu(\mathcal A_n\mid\mathcal A_{<n})}
-     {\mu(\mathcal P_n\mid\mathcal A_{<n})}.
+\frac{\mu(\mathcal{A}_n\mid\mathcal{A}_{\lt n})}
+     {\mu(\mathcal{P}_n\mid\mathcal{A}_{\lt n})}.
 $$
 
 The finite tests reject adjustable geometric tolerances and raw cell counts.
@@ -111,10 +111,10 @@ dynamics maps each initial state to a complete history, inducing the history
 measure by pushforward:
 
 $$
-\mu_{\mathcal H}=F_*\nu_0,
+\mu_{\mathcal{H}}=F_*\nu_0,
 \qquad
 C_{\rm surv}(t)
-=-\log_2\!\int_{\mathcal H}W_t(\gamma)\,d\mu_{\mathcal H}(\gamma).
+=-\log_2\!\int_{\mathcal{H}}W_t(\gamma)\,d\mu_{\mathcal{H}}(\gamma).
 $$
 
 The tested construction is invariant under nonlinear canonical transformations,
