@@ -5,6 +5,12 @@ histories, and a possible connection to cosmological expansion.
 
 **[Research Project Site](https://jonland82.github.io/compatible-histories/)**
 
+The work starts with an ensemble of possible objects or physical histories and
+asks which alternatives remain compatible as additional information is imposed.
+It then assigns invariant measure to the surviving alternatives and tests the
+hypothesis that their rate of disappearance is related to cosmological
+expansion.
+
 The program began with structural-complexity observations made during the
 LeanDojo experiments and developed into an independent four-paper sequence.
 The repository preserves that provenance and keeps mathematical results,
@@ -32,18 +38,89 @@ next research gates.
 
 ## Four-paper sequence
 
-1. [The Relational Shape of Structural Complexity and Neighborhood Density](foundation/relational_shape.pdf)
-   establishes the neighborhood-thinning theorem.
-2. [Hubble Scale from Time-Induced Complexity](accumulated_history/note/accumulated_time_cosmology.pdf)
-   proposes accumulated history as the distinguishing complexity, identifies
-   the present Hubble-scale correspondence, and tests fixed-rate laws against
-   DESI DR2 BAO data.
-3. [Noether Constraints and the Measure of Compatible Histories](accumulated_history/noether_history_note/noether_compatible_histories.pdf)
-   replaces arbitrary geometric proximity and raw state counts with physical
-   admissibility and invariant Liouville phase volume.
-4. [Invariant Measures on Compatible Classical Histories](accumulated_history/invariant_history_note/invariant_classical_histories.pdf)
-   constructs a complete-history measure by pushforward from reduced phase
-   space and tests canonical, temporal, and gauge invariance.
+### 1. The Relational Shape of Structural Complexity and Neighborhood Density
+
+[Web edition](foundation/relational_shape.html) ·
+[PDF](foundation/relational_shape.pdf) ·
+[LaTeX](foundation/relational_shape.tex)
+
+Pairwise distance is built by adding nonnegative contributions,
+$d_n(x,y)\geq0$. Adding a coordinate therefore cannot reduce separation, so
+every fixed-radius neighborhood is contained in the one before it:
+
+$$
+\delta_N(O_i,O_j)=\sum_{n=1}^{N}d_n(o_{in},o_{jn}),
+\qquad
+\mathcal N_r^{(N+1)}(O_i)\subseteq\mathcal N_r^{(N)}(O_i).
+$$
+
+This is the proved mathematical foundation. It does not assume dynamics or
+identify the neighborhood with physical space.
+
+### 2. Hubble Scale from Time-Induced Complexity
+
+[Web edition](accumulated_history/note/accumulated_time_cosmology.html) ·
+[PDF](accumulated_history/note/accumulated_time_cosmology.pdf) ·
+[LaTeX](accumulated_history/note/accumulated_time_cosmology.tex)
+
+The paper lets accumulated history provide the distinguishing constraints. If
+$\rho(t)$ is the surviving fraction of compatible histories, then
+$C(t)=-\log_2\rho(t)$ is their distinguishing information in bits. The proposed
+cosmological bridge is
+
+$$
+a_{\rm rel}(t)\propto 2^{C(t)/3},
+\qquad
+H_{\rm rel}(t)=\frac{\ln 2}{3}\frac{dC}{dt}.
+$$
+
+The simple law gives $H_0=1/t_0=70.85\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$, but
+DESI DR2 BAO data rule out a constant information rate per logarithmic time as
+the complete expansion history.
+
+### 3. Noether Constraints and the Measure of Compatible Histories
+
+[Web edition](accumulated_history/noether_history_note/noether_compatible_histories.html) ·
+[PDF](accumulated_history/noether_history_note/noether_compatible_histories.pdf) ·
+[LaTeX](accumulated_history/noether_history_note/noether_compatible_histories.tex)
+
+Known dynamics are first conditioned out so predictable expansion and
+deterministic chaos do not count as new information. Noether constraints then
+define the admissible alternatives, while Liouville measure $d\Gamma=dx\,dp$
+weights them independently of canonical coordinates:
+
+$$
+\Delta C_\mu(n)
+=-\log_2
+\frac{\mu(\mathcal A_n\mid\mathcal A_{<n})}
+     {\mu(\mathcal P_n\mid\mathcal A_{<n})}.
+$$
+
+The finite tests reject adjustable geometric tolerances and raw cell counts.
+Liouville phase-volume density agrees across the tested grids and canonical
+coordinate changes.
+
+### 4. Invariant Measures on Compatible Classical Histories
+
+[Web edition](accumulated_history/invariant_history_note/invariant_classical_histories.html) ·
+[PDF](accumulated_history/invariant_history_note/invariant_classical_histories.pdf) ·
+[LaTeX](accumulated_history/invariant_history_note/invariant_classical_histories.tex)
+
+Reduced physical initial data carry a normalized measure $\nu_0$. Deterministic
+dynamics maps each initial state to a complete history, inducing the history
+measure by pushforward:
+
+$$
+\mu_{\mathcal H}=F_*\nu_0,
+\qquad
+C_{\rm surv}(t)
+=-\log_2\!\int_{\mathcal H}W_t(\gamma)\,d\mu_{\mathcal H}(\gamma).
+$$
+
+The tested construction is invariant under nonlinear canonical transformations,
+clock reparameterizations, and gauge fixing when the lapse and gauge determinant
+are included. Extension to gravitational solution space—and its proposed
+relation to $H(t)$—remains open.
 
 Each paper directory contains its LaTeX source and compiled PDF. Figure sources
 are included where applicable.
