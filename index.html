@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compatible Histories is a four-paper research program connecting relational complexity, invariant measures on classical histories, and a testable hypothesis about cosmological expansion.">
+  <meta name="keywords" content="compatible histories, relational complexity, invariant measure, Liouville measure, cosmology, Noether theorem, classical histories, mathematical physics">
+  <meta name="author" content="Jonathan R. Landers">
+  <meta name="theme-color" content="#17324d">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Compatible Histories — How the Present Loses Its Alternatives">
+  <meta property="og:description" content="A four-paper path from a theorem about distinguishing structure to an invariant measure on complete classical histories—and an open question for cosmology.">
+  <title>Compatible Histories — How the Present Loses Its Alternatives</title>
+
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        tags: 'ams'
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #211d18;
+      --muted: #625b50;
+      --paper: #fbf8ef;
+      --parchment: #eee5d2;
+      --blue: #17324d;
+      --blue-soft: #dfe8ec;
+      --oxblood: #702b3a;
+      --brass: #96752d;
+      --brass-soft: #e8ddbd;
+      --sage: #52624e;
+      --rule: #c8b98f;
+      --shadow: rgba(43, 34, 22, 0.10);
+      --radius: 5px;
+      --page: 1080px;
+      font-size: 12pt;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--parchment);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(151, 117, 45, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(151, 117, 45, 0.04) 1px, transparent 1px),
+        var(--paper);
+      background-size: 42px 42px;
+      font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      font-size: 11.25pt;
+      line-height: 1.62;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--oxblood);
+      text-decoration-color: rgba(112, 43, 58, 0.42);
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      color: var(--blue);
+      text-decoration-color: var(--brass);
+    }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 2px solid var(--brass);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 100;
+      padding: 8px 12px;
+      border: 1px solid var(--brass);
+      background: var(--paper);
+      transform: translateY(-160%);
+      font-size: 10pt;
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(151, 117, 45, 0.45);
+      background: rgba(251, 248, 239, 0.95);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-wrap {
+      width: min(calc(100% - 32px), var(--page));
+      min-height: 52px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .wordmark {
+      color: var(--blue);
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 11pt;
+      font-variant: small-caps;
+      font-weight: 700;
+      letter-spacing: 0.075em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      white-space: nowrap;
+      padding: 8px 0;
+      font-size: 9pt;
+      font-variant: small-caps;
+      letter-spacing: 0.055em;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { color: var(--oxblood); }
+
+    main,
+    footer {
+      width: min(calc(100% - 32px), var(--page));
+      margin-inline: auto;
+    }
+
+    section {
+      scroll-margin-top: 72px;
+      padding: 72px 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 720px;
+      margin-bottom: 20px;
+      color: var(--blue);
+      font-size: 16pt;
+      line-height: 1.18;
+      font-weight: 650;
+      letter-spacing: -0.014em;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+      color: var(--blue);
+      font-size: 14pt;
+      line-height: 1.25;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      margin-bottom: 9px;
+      color: var(--blue);
+      font-size: 11.5pt;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .eyebrow,
+    .kicker,
+    .card-label,
+    .status-label {
+      margin: 0 0 12px;
+      color: var(--brass);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 8.5pt;
+      font-weight: 750;
+      letter-spacing: 0.14em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      min-height: calc(100vh - 52px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.65fr);
+      gap: clamp(32px, 7vw, 84px);
+      align-items: center;
+      padding: 72px 0 80px;
+      border-top: 0;
+    }
+
+    .lede {
+      max-width: 700px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 12pt;
+      line-height: 1.58;
+    }
+
+    .button-row,
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 7px 13px;
+      border: 1px solid var(--blue);
+      border-radius: 3px;
+      background: var(--blue);
+      color: var(--paper);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 8.75pt;
+      font-weight: 700;
+      letter-spacing: 0.035em;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--blue);
+    }
+
+    .button:hover {
+      border-color: var(--oxblood);
+      background: var(--oxblood);
+      color: var(--paper);
+    }
+
+    .history-mark {
+      position: relative;
+      aspect-ratio: 1;
+      width: min(100%, 340px);
+      margin-inline: auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--rule);
+      border-radius: 50%;
+      background: rgba(251, 248, 239, 0.74);
+      box-shadow: 0 24px 60px var(--shadow), inset 0 0 0 12px rgba(151, 117, 45, 0.055);
+    }
+
+    .history-mark::before,
+    .history-mark::after {
+      content: "";
+      position: absolute;
+      inset: 13%;
+      border: 1px solid rgba(151, 117, 45, 0.55);
+      border-radius: 50%;
+    }
+
+    .history-mark::after {
+      inset: 27%;
+      border-color: rgba(112, 43, 58, 0.48);
+    }
+
+    .history-lines {
+      position: relative;
+      z-index: 2;
+      width: 70%;
+      height: 70%;
+    }
+
+    .history-lines span {
+      position: absolute;
+      left: 10%;
+      width: 80%;
+      height: 1px;
+      background: var(--blue);
+      transform-origin: left center;
+    }
+
+    .history-lines span::before,
+    .history-lines span::after {
+      content: "";
+      position: absolute;
+      top: -3px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--paper);
+      border: 1px solid currentColor;
+    }
+
+    .history-lines span::before { left: -3px; }
+    .history-lines span::after { right: -3px; }
+    .history-lines span:nth-child(1) { top: 32%; transform: rotate(17deg); color: var(--brass); }
+    .history-lines span:nth-child(2) { top: 47%; transform: rotate(0deg); color: var(--blue); }
+    .history-lines span:nth-child(3) { top: 62%; transform: rotate(-17deg); color: var(--oxblood); }
+    .history-lines span:nth-child(4) { top: 47%; left: 70%; width: 11%; transform: rotate(90deg); color: var(--sage); }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 34px;
+    }
+
+    .section-head p:last-child {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .thesis {
+      padding: 78px 0;
+      text-align: center;
+    }
+
+    .thesis blockquote {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 28px clamp(20px, 5vw, 64px);
+      border: 0;
+      color: var(--blue);
+      font-size: 14.5pt;
+      line-height: 1.48;
+      font-style: italic;
+    }
+
+    .thesis blockquote::before,
+    .thesis blockquote::after {
+      display: block;
+      color: var(--brass);
+      font-size: 12pt;
+      font-style: normal;
+      letter-spacing: 0.5em;
+    }
+
+    .thesis blockquote::before { content: "·  ·  ·"; margin-bottom: 18px; }
+    .thesis blockquote::after { content: "·  ·  ·"; margin-top: 18px; }
+
+    .arc-grid,
+    .formal-grid,
+    .paper-grid,
+    .status-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .arc-grid {
+      grid-template-columns: repeat(4, 1fr);
+      counter-reset: arc;
+    }
+
+    .arc-card,
+    .formal-card,
+    .paper-card,
+    .status-card {
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      background: rgba(251, 248, 239, 0.86);
+      box-shadow: 0 14px 38px rgba(43, 34, 22, 0.055);
+    }
+
+    .arc-card {
+      position: relative;
+      padding: 28px 22px 24px;
+      counter-increment: arc;
+    }
+
+    .arc-card::before {
+      content: "0" counter(arc);
+      display: block;
+      margin-bottom: 22px;
+      color: var(--brass);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 8.5pt;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+    }
+
+    .arc-card::after {
+      content: "";
+      position: absolute;
+      top: 38px;
+      right: -19px;
+      z-index: 2;
+      width: 36px;
+      height: 1px;
+      background: var(--brass);
+    }
+
+    .arc-card:last-child::after { display: none; }
+
+    .arc-card p,
+    .formal-card p,
+    .paper-card p,
+    .status-card p {
+      color: var(--muted);
+      font-size: 10.25pt;
+    }
+
+    .turn {
+      color: var(--oxblood) !important;
+      font-style: italic;
+    }
+
+    .formal-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .formal-card {
+      padding: 24px;
+      overflow-x: auto;
+    }
+
+    .formal-card.wide { grid-column: 1 / -1; }
+
+    .math-note {
+      margin: 12px 0 0;
+      padding-top: 12px;
+      border-top: 1px solid rgba(200, 185, 143, 0.7);
+      font-size: 9.5pt !important;
+    }
+
+    mjx-container {
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      font-size: 100% !important;
+    }
+
+    mjx-container svg { max-width: none; }
+
+    .status-grid { grid-template-columns: repeat(4, 1fr); }
+
+    .status-card {
+      padding: 22px;
+      border-top: 4px solid var(--blue);
+    }
+
+    .status-card.proved { border-top-color: var(--sage); }
+    .status-card.validated { border-top-color: var(--blue); }
+    .status-card.falsified { border-top-color: var(--oxblood); }
+    .status-card.open { border-top-color: var(--brass); }
+
+    .status-card p:last-child { margin-bottom: 0; }
+
+    .paper-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .paper-card {
+      display: flex;
+      flex-direction: column;
+      padding: 26px;
+    }
+
+    .paper-card:nth-child(1) { border-left: 4px solid var(--brass); }
+    .paper-card:nth-child(2) { border-left: 4px solid var(--blue); }
+    .paper-card:nth-child(3) { border-left: 4px solid var(--oxblood); }
+    .paper-card:nth-child(4) { border-left: 4px solid var(--sage); }
+
+    .paper-card .card-links {
+      margin-top: auto;
+      padding-top: 14px;
+    }
+
+    .text-link {
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 0.025em;
+    }
+
+    .next-question {
+      position: relative;
+      padding: clamp(28px, 6vw, 62px);
+      border: 1px solid var(--brass);
+      background:
+        radial-gradient(circle at 90% 15%, rgba(151, 117, 45, 0.14), transparent 35%),
+        var(--blue);
+      color: var(--paper);
+      box-shadow: 0 22px 55px rgba(23, 50, 77, 0.18);
+    }
+
+    .next-question h2 { color: var(--paper); }
+    .next-question p { max-width: 800px; color: #e9e3d5; }
+
+    .next-question .equation {
+      margin: 25px 0;
+      padding: 18px;
+      border: 1px solid rgba(232, 221, 189, 0.38);
+      background: rgba(0, 0, 0, 0.11);
+      overflow-x: auto;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding: 35px 0 48px;
+      border-top: 1px solid var(--rule);
+      color: var(--muted);
+      font-size: 8.75pt;
+    }
+
+    footer p { margin: 0; }
+
+    @media (max-width: 920px) {
+      .arc-grid,
+      .status-grid { grid-template-columns: repeat(2, 1fr); }
+      .arc-card:nth-child(2)::after { display: none; }
+    }
+
+    @media (max-width: 820px) {
+      .hero { min-height: auto; grid-template-columns: 1fr; }
+      .history-mark { width: min(78vw, 300px); order: -1; }
+    }
+
+    @media (max-width: 640px) {
+      :root { font-size: 11.5pt; }
+
+      .nav-wrap {
+        width: min(calc(100% - 22px), var(--page));
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0;
+        padding-top: 10px;
+      }
+
+      .nav-links { width: 100%; }
+      main, footer { width: min(calc(100% - 24px), var(--page)); }
+      section { padding: 52px 0; scroll-margin-top: 94px; }
+      .hero { padding-top: 42px; }
+
+      .arc-grid,
+      .formal-grid,
+      .paper-grid,
+      .status-grid { grid-template-columns: 1fr; }
+
+      .formal-card.wide { grid-column: auto; }
+
+      .arc-card::after,
+      .arc-card:nth-child(2)::after {
+        display: block;
+        top: auto;
+        right: auto;
+        bottom: -19px;
+        left: 36px;
+        width: 1px;
+        height: 36px;
+      }
+
+      .arc-card:last-child::after { display: none; }
+      footer { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    @media print {
+      .site-header,
+      .button-row,
+      .skip-link { display: none; }
+      body { background: white; }
+      section { break-inside: avoid; }
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    <p style="margin:0;padding:10px 16px;background:#702b3a;color:#fbf8ef;text-align:center;font-size:10pt;">
+      This page uses MathJax to display its mathematics; enable JavaScript for typeset equations.
+    </p>
+  </noscript>
+  <a class="skip-link" href="#main">Skip to the argument</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="wordmark" href="#top">Compatible Histories</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#arc">The arc</a>
+        <a href="#formalism">Formalism</a>
+        <a href="#status">Status</a>
+        <a href="#papers">Papers</a>
+        <a href="#next">Next question</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div>
+        <p class="eyebrow">A research program in mathematical physics</p>
+        <h1>The present may be defined as much by the histories it can no longer have as by the state it is in.</h1>
+        <p class="lede">
+          Compatible Histories follows one idea through four papers: added information separates alternatives; a longer past makes that separation physical; dynamics decides which histories are admissible; and invariant measure tells us how much possibility remains.
+        </p>
+        <div class="button-row">
+          <a class="button" href="#arc">Follow the four-paper arc</a>
+          <a class="button secondary" href="https://github.com/jonland82/compatible-histories">View the repository</a>
+        </div>
+      </div>
+
+      <div class="history-mark" aria-hidden="true">
+        <div class="history-lines">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="thesis" aria-labelledby="thesis-title">
+      <p class="kicker" id="thesis-title">The idea in one sentence</p>
+      <blockquote>
+        As a world accumulates history, alternatives that once looked compatible fall away; the program asks whether the invariant rate of that loss has a geometric expression in cosmic expansion.
+      </blockquote>
+    </section>
+
+    <section id="arc" aria-labelledby="arc-title">
+      <div class="section-head">
+        <p class="kicker">The narrative arc</p>
+        <h2 id="arc-title">Four papers, each replacing a loose idea with a sharper object</h2>
+        <p>The sequence begins with a clean combinatorial fact and ends with a concrete classical history measure. At each turn, a tempting shortcut is tested—and either refined or ruled out.</p>
+      </div>
+
+      <div class="arc-grid">
+        <article class="arc-card">
+          <h3>More distinction means fewer neighbors</h3>
+          <p>Append a nonnegative distinguishing coordinate and no pair can become closer. Every fixed-radius neighborhood can only stay the same or shrink.</p>
+          <p class="turn">Theorem: complexity has a relational shape.</p>
+        </article>
+
+        <article class="arc-card">
+          <h3>Let history do the distinguishing</h3>
+          <p>A longer shared past can expose differences between candidate worlds. Their survival information suggests a relational volume—and a provocative bridge to expansion.</p>
+          <p class="turn">Hypothesis: lost alternatives may acquire geometric scale.</p>
+        </article>
+
+        <article class="arc-card">
+          <h3>Replace proximity with physics</h3>
+          <p>Arbitrary tolerances and raw cell counts fail invariance tests. Noether constraints define admissibility; Liouville phase volume supplies coordinate-independent weight.</p>
+          <p class="turn">Correction: count physical possibility, not grid cells.</p>
+        </article>
+
+        <article class="arc-card">
+          <h3>Measure complete histories</h3>
+          <p>Deterministic dynamics maps reduced initial data to entire trajectories. Pushing invariant phase measure through that map avoids counting every time slice as independent.</p>
+          <p class="turn">Construction: measure solution space, not a stack of snapshots.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="formalism" aria-labelledby="formalism-title">
+      <div class="section-head">
+        <p class="kicker">The mathematical spine</p>
+        <h2 id="formalism-title">From thinning neighborhoods to invariant history information</h2>
+        <p>A small chain of definitions carries the argument. The arrows are mathematical; the final identification with cosmic expansion remains a physical hypothesis.</p>
+      </div>
+
+      <div class="formal-grid">
+        <article class="formal-card">
+          <h3>Distinguishing structure accumulates</h3>
+          <p>At descriptive depth $N$, separation is additive and nonnegative:</p>
+          $$
+          \delta_N(O_i,O_j)=\sum_{n=1}^{N}d_n(o_{in},o_{jn}),
+          \qquad d_n\ge 0.
+          $$
+          <p class="math-note">Therefore $\delta_{N+1}\ge\delta_N$ and fixed-radius neighborhoods form a descending filtration, $\mathcal N_r^{(N+1)}(O_i)\subseteq\mathcal N_r^{(N)}(O_i)$.</p>
+        </article>
+
+        <article class="formal-card">
+          <h3>Survival becomes information</h3>
+          <p>If $\rho(t)$ is the fraction of alternatives still compatible with a shared past, define</p>
+          $$
+          C(t)=-\log_2\rho(t).
+          $$
+          <p class="math-note">As compatible alternatives disappear, $C$ grows. The logarithm turns multiplicative survival fractions into additive bits.</p>
+        </article>
+
+        <article class="formal-card">
+          <h3>Dynamics supplies the measure</h3>
+          <p>Physical initial data $z\in\Gamma_{\rm phys}$ determine complete histories through the solution map $F$:</p>
+          $$
+          F:\Gamma_{\rm phys}\to\mathcal H,
+          \qquad \mu_{\mathcal H}=F_*\nu_0.
+          $$
+          <p class="math-note">The history measure is induced from reduced Liouville measure; it is not an independent product over arbitrarily many temporal slices.</p>
+        </article>
+
+        <article class="formal-card">
+          <h3>Compatibility weights whole trajectories</h3>
+          <p>For a history functional $0\le W_t(\gamma)\le1$:</p>
+          $$
+          Z_t=\int_{\mathcal H}W_t(\gamma)\,d\mu_{\mathcal H}(\gamma),
+          \qquad C_{\rm surv}(t)=-\log_2 Z_t.
+          $$
+          <p class="math-note">The lapse removes clock-density artifacts; the gauge-fixed determinant removes orbit-counting artifacts.</p>
+        </article>
+
+        <article class="formal-card wide">
+          <h3>The cosmological bridge under investigation</h3>
+          <p>The proposed dictionary turns inverse surviving-history measure into a three-dimensional relational scale:</p>
+          $$
+          \rho\longrightarrow C=-\log_2\rho
+          \longrightarrow a_{\rm rel}\propto 2^{C/3}
+          \longrightarrow H_{\rm rel}=\frac{\ln 2}{3}\frac{dC}{d\tau}.
+          $$
+          <p class="math-note"><strong>Boundary of the result:</strong> the program now has an invariant finite classical candidate for $C$. It has not derived the last relation from gravity or shown that $H_{\rm rel}$ equals the observed Hubble rate.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="status" aria-labelledby="status-title">
+      <div class="section-head">
+        <p class="kicker">What the evidence says</p>
+        <h2 id="status-title">A program built to keep theorem, test, failure, and conjecture separate</h2>
+        <p>The most interesting result is not a single favorable number. It is the progressive narrowing of what the physical object can be.</p>
+      </div>
+
+      <div class="status-grid">
+        <article class="status-card proved">
+          <p class="status-label">Proved</p>
+          <h3>Neighborhood thinning</h3>
+          <p>With additive nonnegative coordinate contributions, increasing distinguishing complexity produces nested, nonincreasing fixed-radius neighborhoods.</p>
+        </article>
+
+        <article class="status-card validated">
+          <p class="status-label">Validated in finite systems</p>
+          <h3>Invariant classical measure</h3>
+          <p>Conditional estimators remove predictable dynamics, while reduced Liouville measure survives tested nonlinear canonical transformations, clock changes, and gauge fixing.</p>
+        </article>
+
+        <article class="status-card falsified">
+          <p class="status-label">Ruled out</p>
+          <h3>A fixed information rate</h3>
+          <p>The simple laws $a(t)\propto t$ and $a(t)\propto t^{4/3}$ do not fit the DESI DR2 BAO expansion history. Causal-past four-volume is also inadequate as a fixed-coupling proxy.</p>
+        </article>
+
+        <article class="status-card open">
+          <p class="status-label">Open</p>
+          <h3>The gravitational connection</h3>
+          <p>Whether a covariant, gauge-invariant loss rate on gravitational solution space tracks cosmological expansion has not been derived or established.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="papers" aria-labelledby="papers-title">
+      <div class="section-head">
+        <p class="kicker">The paper series</p>
+        <h2 id="papers-title">Read the argument in sequence</h2>
+        <p>Each paper is self-contained, but together they record the useful changes of mind: from geometry, to cosmology, to dynamics, to invariant solution space.</p>
+      </div>
+
+      <div class="paper-grid">
+        <article class="paper-card">
+          <p class="card-label">Paper 1 · Foundation</p>
+          <h3>The Relational Shape of Structural Complexity and Neighborhood Density</h3>
+          <p>Establishes the exact neighborhood-thinning theorem, its filtration structure, and the information-theoretic meaning of a distinguishing coordinate.</p>
+          <div class="card-links">
+            <a class="text-link" href="foundation/relational_shape.pdf">Read PDF</a>
+            <a class="text-link" href="foundation/relational_shape.tex">LaTeX</a>
+          </div>
+        </article>
+
+        <article class="paper-card">
+          <p class="card-label">Paper 2 · Conjecture and falsification</p>
+          <h3>Hubble Scale from Time-Induced Complexity</h3>
+          <p>Lets accumulated history supply the distinctions, finds the suggestive present-day scale $H_0\simeq1/t_0$, and shows why a constant channel count cannot be the full dynamics.</p>
+          <div class="card-links">
+            <a class="text-link" href="accumulated_history/note/accumulated_time_cosmology.pdf">Read PDF</a>
+            <a class="text-link" href="accumulated_history/note/accumulated_time_cosmology.tex">LaTeX</a>
+          </div>
+        </article>
+
+        <article class="paper-card">
+          <p class="card-label">Paper 3 · Physical admissibility</p>
+          <h3>Noether Constraints and the Measure of Compatible Histories</h3>
+          <p>Shows why geometric tolerance and raw counts are not enough, then uses conservation, stationary action, and Liouville phase volume to define a more physical candidate.</p>
+          <div class="card-links">
+            <a class="text-link" href="accumulated_history/noether_history_note/noether_compatible_histories.pdf">Read PDF</a>
+            <a class="text-link" href="accumulated_history/noether_history_note/noether_compatible_histories.tex">LaTeX</a>
+          </div>
+        </article>
+
+        <article class="paper-card">
+          <p class="card-label">Paper 4 · Invariant histories</p>
+          <h3>Invariant Measures on Compatible Classical Histories</h3>
+          <p>Constructs the complete-history measure by pushforward from reduced phase space and tests canonical, temporal, refinement, and gauge invariance.</p>
+          <div class="card-links">
+            <a class="text-link" href="accumulated_history/invariant_history_note/invariant_classical_histories.pdf">Read PDF</a>
+            <a class="text-link" href="accumulated_history/invariant_history_note/invariant_classical_histories.tex">LaTeX</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="next" aria-labelledby="next-title">
+      <div class="next-question">
+        <p class="kicker">The next scientific gate</p>
+        <h2 id="next-title">Move the invariant object into gravity—before comparing another rate</h2>
+        <p>The next test is a finite gravitational or cosmological constrained system: construct its reduced symplectic measure, define a causal relational compatibility functional, and require the result to survive canonical, clock, gauge, and refinement changes.</p>
+        <div class="equation">
+          $$
+          \text{gravitational solution space}
+          \longrightarrow \text{invariant surviving measure}
+          \longrightarrow \frac{dC_{\rm surv}}{d\tau}
+          \stackrel{?}{\longleftrightarrow} H(\tau).
+          $$
+        </div>
+        <p>Only after the measure and normalization are fixed independently should its rate be compared with held-out expansion data. Quantum histories remain a distinct later extension.</p>
+        <div class="button-row">
+          <a class="button" href="PROGRAM.md">Research program</a>
+          <a class="button secondary" style="border-color:#e8ddbd;color:#fbf8ef" href="README.md">Repository guide</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Compatible Histories · Jonathan R. Landers</p>
+    <p>Relational complexity · invariant measure · cosmological hypothesis · Mathematics rendered by MathJax</p>
+  </footer>
+</body>
+</html>

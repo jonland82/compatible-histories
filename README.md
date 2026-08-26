@@ -3,6 +3,8 @@
 Research on relational complexity, invariant measures over compatible physical
 histories, and a possible connection to cosmological expansion.
 
+**[Research Project Site](https://jonland82.github.io/compatible-histories/)**
+
 The program began with structural-complexity observations made during the
 LeanDojo experiments and developed into an independent four-paper sequence.
 The repository preserves that provenance and keeps mathematical results,
