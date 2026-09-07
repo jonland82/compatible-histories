@@ -1,0 +1,7 @@
+/build/
+/__pycache__/
+/finite_observation.aux
+/finite_observation.fdb_latexmk
+/finite_observation.fls
+/finite_observation.log
+/finite_observation.out

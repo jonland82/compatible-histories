@@ -1,5 +1,10 @@
 # Compatible-history survival experiment
 
+The first finite gravitational follow-up is now implemented in
+`run_gravitational_history.py`. See [GRAVITATIONAL_HISTORY_RESULTS.md](GRAVITATIONAL_HISTORY_RESULTS.md)
+for its flat-FLRW constraint reduction, invariant-measure checks, failed raw
+survival-to-expansion comparison, and complete-state conditioning null.
+
 This is the next active experiment. `run_history_survival.py` implements its
 first controlled estimator-validation stage; it does not yet fit cosmology.
 The exact-conditioning laptop results are in `RESULTS.md`; the follow-up
