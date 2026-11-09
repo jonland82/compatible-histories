@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b111b">
+  <meta name="description" content="An interactive experiment: recover system-wide binary entropy from one cluster's nearest-neighbor distance as independent history coordinates accumulate.">
+  <meta name="author" content="J. R. Landers">
+  <title>Accumulating histories · Nearest-cluster entropy</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b111b'/%3E%3Cpath d='M16 5 27 16 16 27 5 16Z M16 11 21 16 16 21 11 16Z' fill='none' stroke='%2365c5ff' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']], packages: ['base', 'ams'] },
+      svg: { fontCache: 'local' },
+      options: { enableMenu: false, enableAssistiveMml: false },
+      startup: { ready() { MathJax.startup.defaultReady(); MathJax.startup.promise.then(() => window.dispatchEvent(new Event('math-ready'))); } }
+    };
+  </script>
+  <script defer src="vendor/mathjax-tex-svg-3.2.2.js"></script>
+  <script defer src="model.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="identity" href="../../index.html" aria-label="Compatible Histories home"><span class="identity-mark" aria-hidden="true">◈</span> COMPATIBLE HISTORIES <span class="slash">/</span><span class="muted">INTERACTIVE NOTES</span></a>
+    <a class="paper-link" href="../nearest_cluster_entropy.pdf">Read the two-page paper <span aria-hidden="true">↗</span></a>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <div>
+        <div class="eyebrow"><span class="tiny-line"></span> THERMODYNAMIC CONNECTIONS <span class="muted">/ 01</span></div>
+        <h1>Watch history become geometry.</h1>
+        <p>One reference cluster. A growing record. A nearest-neighbor distance that reveals the uncertainty of the whole system.</p>
+      </div>
+      <div class="experiment-badge"><span class="status-dot"></span><div>SYNTHETIC EXPERIMENT<br><span id="status">Accumulating independent coordinates</span></div></div>
+    </section>
+
+    <section class="workspace" aria-label="Interactive experiment">
+      <div class="panel scene-panel">
+        <div class="panel-heading"><h2><span class="section-number">01</span> The growing neighborhood</h2><button id="reset-view" class="text-button" title="Reset the 3D camera">Reset view ↺</button></div>
+        <div class="scene-wrap">
+          <canvas id="scene" tabindex="0" role="img" aria-label="Interactive 3D radial view of cluster centroid histories. Drag or use arrow keys to rotate, scroll or use plus and minus to zoom. All distances from reference C1 are exact; other pairwise distances are not preserved."></canvas>
+          <div class="scene-topline"><span class="pill">3D RADIAL VIEW</span><span id="scene-record">n = 1 coordinate</span></div>
+          <div class="scene-callout"><span class="small-label">NEAREST TO C₁</span><strong id="nearest-label">C₂</strong><span id="nearest-distance">R = 0.0000</span></div>
+          <div id="tooltip" class="tooltip" hidden></div>
+          <div class="scene-legend"><span><i class="legend-dot reference"></i>Reference C₁</span><span><i class="legend-dot observed"></i>Nearest cluster</span><span><i class="legend-dash"></i>Predicted radius</span></div>
+          <span class="scene-gesture">Drag to orbit · scroll to zoom</span>
+        </div>
+        <div class="scene-caption"><span class="blue-dot"></span><p>Solid sphere: measured nearest distance <span class="math-inline">\(R_n\)</span>. Dashed sphere: predicted growth <span class="math-inline">\(\sqrt{nr}\)</span>.</p></div>
+      </div>
+
+      <aside class="panel calculation-panel" aria-label="Live mathematics and calculations">
+        <div class="panel-heading"><h2><span class="section-number">02</span> One distance, a system-wide signal</h2><span class="live-tag"><i></i>LIVE</span></div>
+        <div class="calculation-section target-section">
+          <div class="small-label">THE PREDICTABLE VALUE <span>THEORY</span></div>
+          <div class="target-number"><span id="target-value">0.01750</span></div>
+          <div class="static-math">\(r=\dfrac{2a^2}{m}\,p(1-p)\)</div>
+          <div id="target-calculation" class="calculation-detail">2 × 1² × 0.30 × 0.70 / 24 = 0.01750</div>
+        </div>
+        <div class="calculation-section">
+          <div class="small-label">THE MEASURED VALUE <span id="nearest-detail">C₁ → C₂</span></div>
+          <div class="observed-row"><strong id="observed-value">0.00000</strong><span id="distance-error" class="error-chip">— from theory</span></div>
+          <div id="live-math" class="live-math" aria-label="Current distance calculation"></div>
+        </div>
+        <div class="calculation-section entropy-section">
+          <div class="small-label">INFERRED ENTROPY <span>PER CONSTITUENT · PER COORDINATE</span></div>
+          <div class="entropy-values"><div><strong id="entropy-estimate">0.0000</strong><span>estimated nats</span></div><div><strong id="entropy-actual">0.6109</strong><span>true nats</span></div></div>
+          <div class="entropy-meter"><span id="entropy-meter"></span><i id="entropy-marker" title="True entropy"></i></div>
+          <div class="entropy-comparison"><span>0</span><span>maximum: ln 2 ≈ 0.6931 nats</span></div>
+        </div>
+      </aside>
+
+      <div class="panel transport" aria-label="Animation playback controls">
+        <button id="play" class="primary-button" aria-label="Pause animation"><span id="play-icon" aria-hidden="true">Ⅱ</span><span id="play-label">Pause</span></button>
+        <button id="restart" class="icon-button" aria-label="Restart this realization" title="Restart">↺</button>
+        <button id="step" class="step-button" title="Pause and append one coordinate">+1</button>
+        <div class="timeline-group"><div class="timeline-label"><label for="timeline">ACCUMULATED COORDINATES</label><span><strong id="coordinate-count">1</strong> / 2,400</span></div><input id="timeline" type="range" min="1" max="2400" value="1" aria-label="Accumulated history coordinates"></div>
+        <label class="speed-control" for="speed">RATE<select id="speed"><option value="30">30 / sec</option><option value="60" selected>60 / sec</option><option value="120">120 / sec</option><option value="240">240 / sec</option></select></label>
+      </div>
+    </section>
+
+    <section class="panel convergence-panel" aria-labelledby="convergence-title">
+      <div class="panel-heading"><div><h2 id="convergence-title"><span class="section-number">03</span> The distance grows. The ratio settles.</h2><p>Every new coordinate adds evidence. Finite records fluctuate; the limit is almost sure.</p></div><div class="chart-legend"><span><i class="legend-line"></i>Measured R² / n</span><span><i class="legend-dash"></i>Predicted r</span></div></div>
+      <div class="chart-wrap"><canvas id="chart" role="img" aria-label="Convergence chart of squared nearest-cluster distance divided by coordinate count, compared with its theoretical limit"></canvas></div>
+      <div class="chart-footer"><div>\(\displaystyle \frac{R_n^2}{n}\xrightarrow{\mathrm{a.s.}}\frac{2a^2}{m}p(1-p)=r\)</div><p>“Almost surely” means convergence with probability one as the record grows without bound.</p></div>
+    </section>
+
+    <section class="panel parameters" aria-labelledby="parameters-title">
+      <div class="parameter-intro"><h2 id="parameters-title">Change the shared rule.</h2><p>Every constituent uses the same probability, independently at each coordinate.</p></div>
+      <div class="probability-control"><div class="timeline-label"><label for="probability">PROBABILITY OF 1 · p</label><output id="probability-value" for="probability">30%</output></div><input id="probability" type="range" min="5" max="95" step="1" value="30"></div>
+      <label class="select-control" for="members">CONSTITUENTS · m<select id="members"><option value="8">8 per cluster</option><option value="24" selected>24 per cluster</option><option value="48">48 per cluster</option></select></label>
+      <label class="select-control" for="clusters">CLUSTERS · K<select id="clusters"><option value="4">4 clusters</option><option value="8" selected>8 clusters</option><option value="12">12 clusters</option></select></label>
+      <button id="new-sample" class="secondary-button">New realization <span aria-hidden="true">↗</span></button>
+    </section>
+
+    <section class="explanations" aria-label="How to read the experiment">
+      <article><div class="small-label">WHAT IS BEING RECORDED?</div><h3>Independent observations, retained.</h3><p>At each coordinate, each constituent is 1 with probability <span class="math-inline">\(p\)</span>, otherwise 0. A centroid is the average of <span class="math-inline">\(m\)</span> constituents. Its history keeps every past average; the amplitude <span class="math-inline">\(a=1\)</span> is fixed.</p><div class="note-equation">\(C_i^{(n)}=\left(\frac{a}{m}\sum_{\ell=1}^{m}B_{i\ell t}\right)_{t=1}^{n}\)</div></article>
+      <article><div class="small-label">WHAT DOES THE 3D VIEW PRESERVE?</div><h3>Exact distances from the reference.</h3><p>Each dot is one cluster’s centroid history. Its distance from C₁ uses <em>all n coordinates</em>. Directions are assigned for readability; distances between other clusters are not preserved. The receding dots retain earlier radii. The spheres and plot axes use the same fixed scale throughout a run.</p><div class="note-equation">\(R_n=\min_{j\ne1}\|C_1^{(n)}-C_j^{(n)}\|\)</div></article>
+      <article><div class="small-label">WHAT CAN WE INFER?</div><h3>A density first. Then the whole record.</h3><p>Clip the measured ratio to <span class="math-inline">\([0,a^2/(2m)]\)</span> to get <span class="math-inline">\(\widehat r_n\)</span>. It determines binary entropy <span class="math-inline">\(\widehat h_n\)</span>. Multiplying by <span class="math-inline">\(Kmn\)</span> estimates the record’s total entropy.</p><div class="note-equation">\(\widehat h_n=h_2\!\left(\frac{1-\sqrt{1-2m\widehat r_n/a^2}}{2}\right)\)</div><p id="total-entropy" class="total-entropy">Estimated record: — nats · True record: — nats</p></article>
+    </section>
+    <div class="scope-note"><span aria-hidden="true">ⓘ</span><p>This demonstrates entropy inference under a common independent binary law. Growing record entropy can coexist with a system at equilibrium; it does not establish thermodynamic entropy production. Here <span class="math-inline">\(h_2(q)=-q\ln q-(1-q)\ln(1-q)\)</span>, with natural logarithms.</p></div>
+    <footer><span>J. R. LANDERS <span class="slash">/</span> COMPATIBLE HISTORIES</span><span id="seed-label">REPRODUCIBLE SEED 1829</span><a href="README.md">Experiment notes ↗</a></footer>
+    <p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+    <noscript><p class="noscript">Enable JavaScript to run the simulation and display the equations.</p></noscript>
+  </main>
+</body>
+</html>

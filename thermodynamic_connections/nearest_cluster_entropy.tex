@@ -1,0 +1,160 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\abovedisplayskip}{7pt}
+\setlength{\belowdisplayskip}{7pt}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\hbin}{h_2}
+\newtheorem*{theorem}{Nearest-cluster entropy theorem}
+\hypersetup{pdftitle={System-wide entropy from one nearest-cluster distance},pdfauthor={J. R. Landers},pdfsubject={Growing histories, neighborhood geometry, and entropy inference}}
+\begin{document}
+\begin{center}
+{\Large\bfseries System-wide entropy from one\\[2pt] nearest-cluster distance}\par
+\vspace{3pt}
+{\small Growing histories, neighborhood geometry, and a shared statistical law}
+\par\vspace{3pt}
+{\small J. R. Landers}
+\end{center}
+\vspace{-5pt}
+
+\textbf{The question.}
+As observations accumulate, a history acquires new coordinates. Let
+$u^{(n)}=(u_1,\ldots,u_n)$ and $v^{(n)}=(v_1,\ldots,v_n)$ be two histories
+of $n$ observations, where $u_t,v_t$ are their values at coordinate $t$.
+Writing $\|\cdot\|$ for the Euclidean norm, each new coordinate gives
+\[
+ \|u^{(n+1)}-v^{(n+1)}\|^2
+ =\|u^{(n)}-v^{(n)}\|^2+(u_{n+1}-v_{n+1})^2.
+\]
+Histories consequently separate and fixed-radius neighborhoods can empty.
+Can a measurement at just one cluster reveal the entropy of the larger system?
+The answer is yes in an identifiable statistical model: the same unknown
+parameter must govern both centroid separation and constituent uncertainty.
+The growing record then turns one distance into many observations.
+
+\textbf{Model and observable.}
+Fix $K\geq2$ clusters, each containing $m\geq1$ labeled constituents.
+Use $i=1,\ldots,K$ for clusters, $\ell=1,\ldots,m$ for constituents,
+and $t=1,2,\ldots$ for coordinates. Let $B_{i\ell t}$ be mutually independent
+binary variables, equal to $1$ with common unknown probability $p\in(0,1)$
+and $0$ otherwise. Constituent $\ell$ of cluster $i$ has value
+$X_{i\ell t}=aB_{i\ell t}$ at coordinate $t$, where $a>0$ is known.
+After $n$ coordinates, define the centroid vector $C_i^{(n)}$, whose
+$t$th entry is $C_{it}$, and its nearest-neighbor distance $R_n$ from cluster $1$:
+\[
+ C_i^{(n)}=\left(\frac1m\sum_{\ell=1}^m X_{i\ell t}\right)_{t=1}^n,
+ \qquad R_n=\min_{2\leq j\leq K}\|C_1^{(n)}-C_j^{(n)}\|.
+\]
+Here $j$ indexes the other clusters. Only this distance is measured;
+the neighbor's identity need not be retained. Write $H_n$ for the joint
+Shannon entropy of all $Kmn$ constituent values, using the natural logarithm
+$\ln$ (entropy in nats). For a binary probability $q\in(0,1)$, define
+$\hbin(q)=-q\ln q-(1-q)\ln(1-q)$.
+
+\begin{theorem}
+With $K,m,a$ fixed as $n\to\infty$, the normalized squared distance has
+limit $r$ below; $\xrightarrow{\mathrm{a.s.}}$ denotes convergence with probability one:
+\begin{equation}
+ \frac{R_n^2}{n}\xrightarrow{\mathrm{a.s.}}r=\frac{2a^2}{m}p(1-p),
+ \qquad
+ \frac{H_n}{Kmn}
+ =\hbin\!\left(\frac{1-\sqrt{1-2mr/a^2}}{2}\right).
+ \label{eq:main}
+\end{equation}
+Thus the limiting normalized distance determines the entropy per constituent
+per coordinate of the whole system.
+\end{theorem}
+
+\begin{proof}
+Write $\E$ for expectation and $\operatorname{Var}$ for variance.
+Each centroid coordinate has mean $ap$ and variance $a^2p(1-p)/m$.
+For each $j\ne1$, independence between clusters gives
+\[
+ \E\bigl[(C_{1t}-C_{jt})^2\bigr]
+ =2\operatorname{Var}(C_{1t})=\frac{2a^2}{m}p(1-p)=r.
+\]
+The squared differences are independent and identically distributed across
+$t$, so the strong law gives $\|C_1^{(n)}-C_j^{(n)}\|^2/n\to r$ almost
+surely. The minimum of finitely many such sequences has the same limit.
+Meanwhile independence of all constituents gives $H_n=Kmn\hbin(p)$.
+Solving for $p$ leaves the two possibilities $p$ and $1-p$, whose entropies
+are equal, yielding \eqref{eq:main}.
+\end{proof}
+
+\newpage
+\textbf{An estimator from a finite record.}
+Define $\widehat r_n$ as the clipped distance estimate and $\widehat h_n$
+as the estimated entropy per constituent coordinate:
+\begin{equation}
+ \widehat r_n=\min\!\left\{\frac{a^2}{2m},\frac{R_n^2}{n}\right\},
+ \qquad
+ \widehat h_n=\hbin\!\left(\frac{1-\sqrt{1-2m\widehat r_n/a^2}}{2}\right).
+ \label{eq:estimate}
+\end{equation}
+Use $\hbin(0)=\hbin(1)=0$ by continuity. Then
+$\widehat h_n\to\hbin(p)$ almost surely. If the counts are known,
+$\widehat H_n=Kmn\widehat h_n$ estimates the total entropy, with
+\[
+ \frac{\widehat H_n-H_n}{Kmn}\xrightarrow{\mathrm{a.s.}}0.
+\]
+This is consistency per constituent coordinate; it does not assert that
+the absolute error in an increasingly large total vanishes.
+For example, with $a=1$ and $m=10$, a limiting value $r=0.05$ implies
+$p=1/2$ and entropy $\ln2$ per constituent coordinate. A value $r=0.018$
+implies $p=0.1$ or $0.9$, both giving entropy approximately $0.3251$ nats.
+
+For a finite-record guarantee, write $\Prob$ for probability and let
+$\varepsilon>0$ be an error tolerance in normalized squared distance.
+Each squared coordinate difference lies in $[0,a^2]$; Hoeffding's inequality
+and a union bound over the $K-1$ candidates give
+\begin{equation}
+ \Prob\!\left(\left|\frac{R_n^2}{n}-r\right|>\varepsilon\right)
+ \leq 2(K-1)\exp\!\left(-\frac{2n\varepsilon^2}{a^4}\right).
+ \label{eq:concentration}
+\end{equation}
+Candidate distances share the reference cluster, but independence between
+different candidates is unnecessary for this union bound.
+
+\textbf{What the neighborhood contributes.}
+Equation~\eqref{eq:main} also gives $R_n/\sqrt n\to\sqrt r>0$ almost surely.
+Every fixed-radius reference neighborhood therefore eventually loses its
+last other centroid. The radius needed to retain a neighbor grows as
+$\sqrt{nr}$. With $a$ and $m$ fixed, its coefficient determines the entropy
+density through the binary model. The nearest neighbor is useful because
+even the last surviving neighbor carries the shared statistical signal.
+Here the substantive information is in the calibrated growth coefficient,
+rather than in the bare fact that distances grow.
+
+\textbf{Why the shared law is essential.}
+Place centroid $i$ at $c_i^{(n)}=(i,\ldots,i)$ and give each cluster two
+constituents at equal and opposite coordinate offsets. In system A, every
+offset magnitude is deterministically $1/4$. In system B, independently for
+each cluster and coordinate, the magnitude is $1/4$ or $1/3$ with equal
+probability. Both systems have identical centroids and nearest distances
+$R_n=\sqrt n$. Yet their constituent entropies are respectively $0$ and
+$Kn\ln2$. Centroid geometry alone cannot reveal arbitrary internal entropy.
+Known scale $a$, known cluster size $m$, a common binary law, independent
+coordinates, and the fixed number of clusters make the theorem identifiable.
+
+\textbf{Thermodynamic meaning and scope.}
+If the binary values encode chamber occupancy, multiplying Shannon entropy
+by Boltzmann's constant $k_{\mathrm B}$ gives the coarse-grained mixing entropy.
+If coordinates instead record successive independent observations,
+$H_n$ is entropy of the accumulated record. It can grow at equilibrium
+while the entropy of the instantaneous physical state stays constant.
+The result establishes inference of system-wide uncertainty from a local
+distance measurement; a derivation of thermodynamic irreversibility would
+require additional dynamical information.
+
+\vfill
+{\footnotesize\textit{Project source:} \nolinkurl{expanding-neighborhoods-transcript.md},
+``A theorem for your coordinate-growth model.'' The concentration estimate
+above makes the finite-record implication explicit.}
+\end{document}
